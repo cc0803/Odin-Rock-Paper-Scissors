@@ -7,6 +7,7 @@ for (let i = 0; i < 5; i++){
 
     // Ask for Input and make it normed
     let input = prompt("rock, paper, scissors what is your selection? ").trim().toLowerCase();
+
     if (input != "rock" && input != "paper"  && input != "scissors"){
         console.log("invalid input, computer wins");
         pointsComputer++;
@@ -17,7 +18,7 @@ for (let i = 0; i < 5; i++){
     function computerSelection(){
         //Use Math.Floor(Math.Random()) and tie the numbers to a selection
         let number = Math.floor(Math.random() * 100);
-        // give a third of the possible numbers to each possibility
+
         if (number < 33){
             return "rock";
         } else if (number > 66){
@@ -42,7 +43,7 @@ for (let i = 0; i < 5; i++){
         }
     }
 
-    function result(winner, user, computer){
+    function printResult(winner, user, computer){
         switch (winner){
             case "tie":
                 console.log("tie!");
@@ -55,8 +56,8 @@ for (let i = 0; i < 5; i++){
         }
     }
     
-    // Keep track of the win-count and round count
-    function count(winner){
+    // Keep track of the win-count
+    function countWins(winner){
         switch(winner){
             case "tie":
                 pointsUser++;
@@ -75,8 +76,8 @@ for (let i = 0; i < 5; i++){
 
     // Programm Execution
     let winnerGame = check(input, selection);
-    result(winnerGame, input, selection);
-    count(winnerGame);
+    printResult(winnerGame, input, selection);
+    countWins(winnerGame);
 }
 overallWinner(pointsUser, pointsComputer);
 
