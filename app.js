@@ -1,5 +1,8 @@
 let pointsUser = 0;
 let pointsComputer = 0;
+let computerUIScore = document.querySelector(".computer");
+let userUIScore = document.querySelector(".user");
+let roundUI = document.querySelector(".rounds");
 
 const buttons = document.querySelectorAll("button");
 for (const button of buttons){
@@ -10,7 +13,6 @@ for (const button of buttons){
 
 function playRound(input){
     //let input = prompt("rock, paper, scissors what is your selection? ").trim().toLowerCase();
-
     if (input != "rock" && input != "paper"  && input != "scissors"){
         console.log("invalid input, computer wins");
         pointsComputer++;
@@ -47,6 +49,7 @@ function playRound(input){
     }
 
     function printResult(winner, user, computer){
+    roundUI = `Rounds: `;
         switch (winner){
             case "tie":
                 console.log("tie!");
@@ -65,12 +68,16 @@ function playRound(input){
             case "tie":
                 pointsUser++;
                 pointsComputer++;
+                computerUIScore.textContent = `Computer: ${pointsComputer}`;
+                userUIScore.textContent = `User: ${pointsUser}`;
                 break;
             case "computer":
                 pointsComputer++;
+                computerUIScore.textContent = `Computer: ${pointsComputer}`;
                 break;
             default: 
                 pointsUser++;
+                userUIScore.textContent = `User: ${pointsUser}`;
         }
     }
 
@@ -84,15 +91,14 @@ function playRound(input){
 
     overallWinner(pointsUser, pointsComputer);
 
-// Print the overall winner and ask for a repeat
-function overallWinner(userCount, computerCount){
-    if (userCount > computerCount){
-        console.log(`You won ${userCount} to ${computerCount}`);
-    } else if(computerCount > userCount){
-        console.log(`You lose ${userCount} to ${computerCount}`);
-    } else {
-        console.log(`Tie with ${userCount} point(s) each`);
+    // Print the overall winner and ask for a repeat
+    function overallWinner(userCount, computerCount){
+        if (userCount > computerCount){
+            console.log(`You won ${userCount} to ${computerCount}`);
+        } else if(computerCount > userCount){
+            console.log(`You lose ${userCount} to ${computerCount}`);
+        } else {
+            console.log(`Tie with ${userCount} point(s) each`);
+        }
     }
-}
-pointsUser = pointsComputer = 0;
 }
