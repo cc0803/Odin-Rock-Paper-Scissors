@@ -1,17 +1,20 @@
-// Get user input
 let pointsUser = 0;
 let pointsComputer = 0;
 
-//Repeat the game five times
-for (let i = 0; i < 5; i++){
+const buttons = document.querySelectorAll("button");
+for (const button of buttons){
+    button.addEventListener("click", () => {
+        playRound(button.value);
+    });
+}
 
-    // Ask for Input and make it normed
-    let input = prompt("rock, paper, scissors what is your selection? ").trim().toLowerCase();
+function playRound(input){
+    //let input = prompt("rock, paper, scissors what is your selection? ").trim().toLowerCase();
 
     if (input != "rock" && input != "paper"  && input != "scissors"){
         console.log("invalid input, computer wins");
         pointsComputer++;
-        continue;
+        return;
     }
 
     // function for cumputer selection
@@ -78,8 +81,8 @@ for (let i = 0; i < 5; i++){
     let winnerGame = check(input, selection);
     printResult(winnerGame, input, selection);
     countWins(winnerGame);
-}
-overallWinner(pointsUser, pointsComputer);
+
+    overallWinner(pointsUser, pointsComputer);
 
 // Print the overall winner and ask for a repeat
 function overallWinner(userCount, computerCount){
@@ -90,4 +93,6 @@ function overallWinner(userCount, computerCount){
     } else {
         console.log(`Tie with ${userCount} point(s) each`);
     }
+}
+pointsUser = pointsComputer = 0;
 }
