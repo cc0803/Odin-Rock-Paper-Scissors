@@ -11,7 +11,7 @@ for (let i = 0; i < 5; i++){
     if (input != "rock" && input != "paper"  && input != "scissors"){
         console.log("invalid input, computer wins");
         pointsComputer++;
-        break;
+        continue;
     }
 
     // function for cumputer selection
