@@ -1,5 +1,6 @@
 html {
     background-color: blanchedalmond;
+    box-sizing: border-box;
 }
 
 body {
@@ -13,6 +14,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 4em;
 }
 
 .container-button {
@@ -32,4 +34,21 @@ button {
 
 .fa-solid {
     font-size: 5em;
+}
+
+.results {
+    background-color: rgba(113, 186, 255, 0.875);
+    padding: 2em;
+    border: 4px solid #333;
+    border-radius: 10px;
+    display: flex;
+    gap: 2em;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
+}
+
+p{
+    font-size: 30px;
+    color: #333;
 }
