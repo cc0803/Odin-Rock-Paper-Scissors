@@ -5,6 +5,9 @@ let computerUIScore = document.querySelector(".computer");
 let userUIScore = document.querySelector(".user");
 let roundUI = document.querySelector(".rounds");
 let finalScore = document.querySelector(".final-score");
+const restartButton = document.querySelector(".restart");
+
+restartButton.disabled = true;
 
 const buttons = document.querySelectorAll("button");
 for (const button of buttons){
@@ -17,7 +20,9 @@ function playRound(input){
     
     if (roundsCount >= 5){
         overallWinner(pointsUser, pointsComputer);
-        return
+        restartButton.disabled = false;
+        startNewGame();
+        return;
     }
 
     //let input = prompt("rock, paper, scissors what is your selection? ").trim().toLowerCase();
@@ -94,7 +99,21 @@ function overallWinner(userCount, computerCount){
     } else if(computerCount > userCount){
         finalScore.textContent = `You lose ${userCount} to ${computerCount}`;
     } else {
-
         finalScore.textContent = `Tie with ${userCount} point(s) each`;
     }
+}
+
+
+function startNewGame(){
+    restartButton.addEventListener("click", () => {
+        finalScore.textContent = "";
+        finalScore.classList.remove("winner");
+        pointsUser = 0;
+        pointsComputer = 0;
+        roundsCount = 0;
+        userUIScore.textContent = "User: 0";
+        computerUIScore.textContent = "Computer: 0";
+        roundUI.textContent = "Rounds: 0";
+        restartButton.disabled = true;
+    });
 }
