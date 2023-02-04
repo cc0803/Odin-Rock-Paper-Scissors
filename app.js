@@ -47,20 +47,6 @@ function playRound(input){
             return "user";
         }
     }
-
-    function printResult(winner, user, computer){
-    roundUI = `Rounds: `;
-        switch (winner){
-            case "tie":
-                console.log("tie!");
-                break;
-            case "computer":
-                console.log(`You lose! ${computer} beats ${user}!`);
-                break;
-            default:
-                console.log(`You won! ${user} beats ${computer}`);
-        }
-    }
     
     // Keep track of the win-count
     function countWins(winner){
@@ -86,7 +72,6 @@ function playRound(input){
 
     // Programm Execution
     let winnerGame = check(input, selection);
-    printResult(winnerGame, input, selection);
     countWins(winnerGame);
 
     overallWinner(pointsUser, pointsComputer);
