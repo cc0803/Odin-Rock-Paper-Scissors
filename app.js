@@ -1,8 +1,10 @@
 let pointsUser = 0;
 let pointsComputer = 0;
+let roundsCount = 0;
 let computerUIScore = document.querySelector(".computer");
 let userUIScore = document.querySelector(".user");
 let roundUI = document.querySelector(".rounds");
+let finalScore = document.querySelector(".final-score");
 
 const buttons = document.querySelectorAll("button");
 for (const button of buttons){
@@ -12,6 +14,12 @@ for (const button of buttons){
 }
 
 function playRound(input){
+    
+    if (roundsCount >= 5){
+        overallWinner(pointsUser, pointsComputer);
+        return
+    }
+
     //let input = prompt("rock, paper, scissors what is your selection? ").trim().toLowerCase();
     if (input != "rock" && input != "paper"  && input != "scissors"){
         console.log("invalid input, computer wins");
@@ -65,6 +73,8 @@ function playRound(input){
                 pointsUser++;
                 userUIScore.textContent = `User: ${pointsUser}`;
         }
+        roundsCount++;
+        roundUI.textContent = `Rounds: ${roundsCount}`;
     }
 
     //Get Computer Selection
@@ -73,17 +83,18 @@ function playRound(input){
     // Programm Execution
     let winnerGame = check(input, selection);
     countWins(winnerGame);
+}
 
-    overallWinner(pointsUser, pointsComputer);
+// Print the overall winner and ask for a repeat
+function overallWinner(userCount, computerCount){
+    finalScore.classList.add("winner");
 
-    // Print the overall winner and ask for a repeat
-    function overallWinner(userCount, computerCount){
-        if (userCount > computerCount){
-            console.log(`You won ${userCount} to ${computerCount}`);
-        } else if(computerCount > userCount){
-            console.log(`You lose ${userCount} to ${computerCount}`);
-        } else {
-            console.log(`Tie with ${userCount} point(s) each`);
-        }
+    if (userCount > computerCount){
+        finalScore.textContent = `You won ${userCount} to ${computerCount}`;
+    } else if(computerCount > userCount){
+        finalScore.textContent = `You lose ${userCount} to ${computerCount}`;
+    } else {
+
+        finalScore.textContent = `Tie with ${userCount} point(s) each`;
     }
 }
